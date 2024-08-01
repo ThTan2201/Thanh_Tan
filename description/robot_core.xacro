@@ -53,15 +53,19 @@
          </xacro:inertial_box>
      </link>
 
-     <!-- Bánh xe Trái (LEFT WHELL LINK) tạo khớp động quay không giới hạn Continous -->
-     <joint name="left_whell_joint" type="continuous">
+     <gazebo reference="chassis">
+      <material>Gazebo/White</material>
+     </gazebo>
+
+     <!-- Bánh xe Trái (LEFT WHEEL LINK) tạo khớp động quay không giới hạn Continous -->
+     <joint name="left_wheel_joint" type="continuous">
       <parent link="base_link"/>
-      <child link="left_whell"/>
+      <child link="left_wheel"/>
       <origin xyz="0 0.105 0 " rpy="-${pi/2} 0 0"/>
       <axis xyz="0 0 1"/>
      </joint>
 
-     <link name="left_whell"> 
+     <link name="left_wheel"> 
       <visual>
          <geometry>
             <cylinder radius="0.0325" length="0.03"/>
@@ -78,15 +82,20 @@
         <origin xyz="0 0 0" rpy="0 0 0"/> 
       </xacro:inertial_cylinder>
       </link>
-     <!-- BÁNH XE PHẢI (RIGHT WHELL LINK) -->
-     <joint name="right_whell_joint" type="continuous">
+
+      <gazebo reference="left_wheel">
+         <material>Gazebo/Blue</material>
+        </gazebo>
+
+     <!-- BÁNH XE PHẢI (RIGHT WHEEL LINK) -->
+     <joint name="right_wheel_joint" type="continuous">
       <parent link="base_link"/>
-      <child link="right_whell"/>
+      <child link="right_wheel"/>
       <origin xyz="0 -0.105 0 " rpy="${pi/2} 0 0"/>
       <axis xyz="0 0 -1"/>
      </joint>
 
-     <link name="right_whell"> 
+     <link name="right_wheel"> 
       <visual>
          <geometry>
             <cylinder radius="0.0325" length="0.03"/>
@@ -104,14 +113,18 @@
        </xacro:inertial_cylinder>
       </link>
 
-      <!-- Bánh đa (CASTER WHELL LINK) -->
-      <joint name="caster_whell_link" type="fixed">
+      <gazebo reference="right_wheel">
+         <material>Gazebo/Blue</material>
+        </gazebo>
+
+      <!-- Bánh đa (CASTER WHEEL LINK) -->
+      <joint name="caster_wheel_link" type="fixed">
         <parent link="chassis"/>
-        <child link="caster_whell"/> 
+        <child link="caster_wheel"/> 
         <origin xyz="0.12 0 0"/>
       </joint>
 
-      <link name="caster_whell">
+      <link name="caster_wheel">
          <visual>
             <geometry>
                <sphere radius="0.03"/>
@@ -129,5 +142,10 @@
          </xacro:inertial_sphere>
       </link>
 
+      <gazebo reference="caster_wheel">
+         <material>Gazebo/Black</material>
+         <mu1 value="0.001"/>
+         <mu2 value="0.001"/>
+        </gazebo>
     
 </robot>
