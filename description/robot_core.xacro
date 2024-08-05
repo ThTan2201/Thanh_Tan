@@ -16,6 +16,9 @@
      <material name="black">
         <color rgba="0 0 0 1"/>
      </material>
+     <material name="red">
+      <color rgba="1 0 0 1"/>
+   </material>
 
      <!---->
      <!-- Kích thước tổng quan thân robot (0.18 x 0.13 x 0.5)(d x r x c)  m  có nghĩa là sẽ không có sự di chuyển giữa các liên kết nối với khớp này -->
